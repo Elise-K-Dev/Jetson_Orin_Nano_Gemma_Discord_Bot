@@ -1,0 +1,32 @@
+FROM ubuntu:24.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        bash \
+        build-essential \
+        ca-certificates \
+        cargo \
+        clang \
+        cmake \
+        curl \
+        git \
+        jq \
+        nodejs \
+        npm \
+        pkg-config \
+        python3 \
+        python3-pip \
+        python3-venv \
+        ripgrep \
+        rustc \
+        shellcheck \
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /workspace \
+    && chown 1000:1000 /workspace
+
+USER 1000:1000
+WORKDIR /workspace
+
+CMD ["sleep", "infinity"]
